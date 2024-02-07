@@ -1,0 +1,537 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="{% static 'Login/images/fevflightworld.png' %}" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="{% static 'Login/js/session_timeout.js' %}"></script>
+    <style>
+      body {
+        margin: 0 auto;
+        margin-left: 330px;
+        max-width: 800px;
+        padding: 0 20px;
+        /* border: 3px solid black; */
+      }
+      .single {
+        display: inline-flex;
+        /* border: 3px solid black; */
+      }
+
+      .container {
+        border: 2px solid #dedede;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        padding: 10px;
+        width: 615px;
+        /* padding-right: -140px; */
+        margin: 10px 0;
+        /* border: 3px solid black; */
+        /* width: 150px; */
+
+        /* border: 3px solid black; */
+      }
+
+      .darker {
+        border-color: #ccc;
+        background-color: #ddd;
+      }
+
+      .container::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      .container img {
+        float: left;
+        max-width: 60px;
+        width: 100%;
+        margin-right: 20px;
+        border-radius: 50%;
+      }
+
+      .container img.right {
+        float: right;
+        margin-left: 20px;
+        margin-right: 0;
+      }
+
+      .time-right {
+        float: right;
+        color: #000000;
+      }
+
+      .time-left {
+        float: right;
+        color: #999;
+      }
+      .sender-name {
+        float: left;
+      }
+
+      .receiver-name {
+        float: left;
+      }
+
+      .sender-message {
+        text-align: left;
+        margin-top: 25px;
+        /* border: 3px solid black; */
+      }
+
+      .receiver-message {
+        text-align: left;
+        margin-top: 25px;
+        /* border: 3px solid black; */
+      }
+      .sender-container {
+        border: 2px solid #dedede;
+        background-color: #a7a0a0;
+        border-radius: 5px;
+        padding: 20px;
+        /* padding-right: -140px; */
+        margin: 10px;
+        margin-left: 290px;
+        width: 270px;
+        /* border: 3px solid black; */
+        overflow: hidden;
+        word-wrap: break-word;
+      }
+      .receiver-container {
+        border: 2px solid #dedede;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        padding: 20px;
+        /* padding-right: -140px; */
+        margin: 10px 0;
+        /* margin-left: 180px; */
+        width: 250px;
+        overflow: hidden;
+        word-wrap: break-word;
+      }
+      #display {
+        /* border: 3px solid black; */
+        width: 600px;
+      }
+      input[type="text"],
+      select {
+        width: 450px;
+        padding: 12px 20px;
+        margin: 8px 0px;
+        margin-right: 20px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+        width: 30%;
+        background-color: #581ed6;
+        color: white;
+        /* padding: 14px 20px; */
+        /* margin: 8px 0; */
+        padding: 10px 0px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #8c66dd;
+      }
+
+      div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+      }
+      .rotate {
+        margin-top: 10px;
+        margin-right: 20px;
+        font-size: 36px;
+        cursor: pointer;
+      }
+      .btn {
+        border: none;
+        cursor: pointer;
+      }
+      #file-input {
+        display: none;
+      }
+
+      .main {
+        background-color: white;
+      }
+      #image-preview-container {
+        display: none;
+        margin: 10px;
+        padding: 10px;
+      }
+
+      #image-preview {
+        max-width: 30%;
+        height: auto;
+        display: block;
+        margin: 0px auto;
+      }
+      @media screen and (max-width: 600px) {
+        body {
+          margin-left: 0;
+          max-width: 100%;
+        }
+
+        .single,
+        .container,
+        .sender-container,
+        .receiver-container,
+        #display {
+          width: 100%;
+          margin-left: 0;
+        }
+        .container {
+          /* border: 3px solid black; */
+        }
+      }
+      @media screen and (max-width: 375px) and (max-height: 667px) {
+        body {
+          margin-left: 0;
+          max-width: 100%;
+        }
+        input[type="text"],
+        select {
+          width: 150px;
+          padding: 6px 10px;
+          margin: 4px 0px;
+          margin-right: 8px;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 2px;
+          box-sizing: border-box;
+        }
+        input[type="submit"] {
+          width: 20%;
+          background-color: #581ed6;
+          color: white;
+          /* padding: 14px 20px; */
+          /* margin: 8px 0; */
+          padding: 5px 0px;
+          border: none;
+          border-radius: 2px;
+          cursor: pointer;
+        }
+        .single {
+          /* border: 3px solid black; */
+          width: 85%;
+        }
+        .rotate {
+          margin-top: 5px;
+          margin-right: 10px;
+          font-size: 20px;
+          cursor: pointer;
+        }
+        #display {
+          /* border: 3px solid black; */
+          width: 280px;
+        }
+        .sender-container {
+          border: 2px solid #dedede;
+          background-color: #a7a0a0;
+          border-radius: 2px;
+          padding: 10px;
+          /* padding-right: -140px; */
+          margin: 5px;
+          /* margin-right: 10px; */
+          margin-left: 120px;
+          width: 140px;
+          /* border: 3px solid black; */
+          overflow: hidden;
+          word-wrap: break-word;
+        }
+        .receiver-container {
+          border: 2px solid #dedede;
+          background-color: #f1f1f1;
+          border-radius: 2px;
+          padding: 10px;
+          /* padding-right: -140px; */
+          margin: 5px 0;
+          /* margin-left: 180px; */
+          width: 150px;
+          overflow: hidden;
+          word-wrap: break-word;
+        }
+      }
+      .back-button {
+        background-color: white;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 26px;
+      }
+
+      .back-link {
+        text-decoration: none;
+        color: #581ed6; /* Change color as needed */
+      }
+
+      .back-arrow {
+        margin-right: 5px;
+      }
+      .back-button span {
+        font-size: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back-button">
+      <a href="{% url 'get-post' %}" class="back-link">
+        <b> <span class="back-arrow">&lt;</span>Back</b>
+      </a>
+    </div>
+    <div class="main">
+      <h2>{{room}} - FlyShareChat</h2>
+
+      <div id="display">
+        <!-- <div class="container darker">
+  <b>Tom</b><p>Hello Everyone, How Are You Guys Doing?</p>
+  <span class="time-left">20th, April 2021</span>
+</div> -->
+      </div>
+
+      <div class="container">
+        <form id="post-form" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input
+            type="hidden"
+            name="username"
+            id="username"
+            value="{{username}}"
+          />
+          <input
+            type="hidden"
+            name="room_id"
+            id="room_id"
+            value="{{room_details.id}}"
+          />
+          <div id="file-preview-container" style="display: none">
+            <div id="file-preview"></div>
+          </div>
+          <div id="image-preview-container" style="display: none">
+            <img id="image-preview" src="#" alt="Selected Photo" />
+          </div>
+          <div class="single">
+            <input type="text" name="message" id="message" class="message1" />
+            <input
+              type="file"
+              id="file-input"
+              onchange="updatePreview(this)"
+              name="image"
+              accept="image/*"
+            />
+            <button
+              type="button"
+              class="btn"
+              onclick="document.getElementById('file-input').click()"
+            >
+              <i class="material-icons rotate">add_a_photo</i>
+            </button>
+            <input type="submit" value="Send" class="chat-single" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function previewImage() {
+        var fileInput = document.getElementById("file-input");
+        var imagePreviewContainer = document.getElementById(
+          "image-preview-container"
+        );
+        var imagePreview = document.getElementById("image-preview");
+
+        if (
+          fileInput &&
+          imagePreviewContainer &&
+          imagePreview &&
+          fileInput.files &&
+          fileInput.files[0]
+        ) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            imagePreview.src = e.target.result;
+          };
+
+          reader.readAsDataURL(fileInput.files[0]);
+
+          // Show the image preview container
+          imagePreviewContainer.style.display = "block";
+        }
+      }
+      $(document).ready(function () {
+        setInterval(function () {
+          $.ajax({
+            type: "GET",
+            url: "/app1/getMessages/{{room}}/",
+            success: function (response) {
+              console.log(response);
+              $("#display").empty();
+              for (var key in response.messages) {
+                var message = response.messages[key];
+                var isSender = message.user === "{{username}}";
+                var containerClass = isSender
+                  ? "sender-container"
+                  : "receiver-container";
+                var dateObject = new Date(message.date);
+                var formattedDate = dateObject.toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "numeric",
+                  year: "numeric",
+                });
+                var formattedTime = dateObject.toLocaleTimeString("en-US", {
+                  hour12: false,
+                  hour: "numeric",
+                  minute: "numeric",
+                });
+
+                var temp =
+                  "<div class='" +
+                  containerClass +
+                  "'>" +
+                  "<b class='" +
+                  (isSender ? "sender-name" : "receiver-name") +
+                  "'>" +
+                  message.user +
+                  "</b>";
+
+                // Check if the message contains text
+                if (message.value.trim() !== "") {
+                  temp +=
+                    "<p class='" +
+                    (isSender ? "sender-message" : "receiver-message") +
+                    "'>" +
+                    message.value +
+                    "</p>";
+                }
+
+                // Check if the message contains an image
+                if (message.image.trim() !== "") {
+                  var mediaUrl = "/media/"; // Adjust this to match your media folder path on the server
+                  var maxWidth = 200; // Adjust the maximum width as needed
+
+                  // Add spacing between username and image
+                  temp +=
+                    "<img src='" +
+                    mediaUrl +
+                    message.image +
+                    "' alt='Image' class='" +
+                    (isSender ? "sender-image" : "receiver-image") +
+                    "' style='max-width: " +
+                    maxWidth +
+                    "px; margin-top: 20px;'>";
+                }
+
+                temp +=
+                  "<span class='" +
+                  (isSender ? "time-right" : "time-left") +
+                  "'>" +
+                  formattedDate +
+                  " " +
+                  formattedTime +
+                  "</span>" +
+                  "</div>";
+
+                $("#display").append(temp);
+              }
+            },
+            error: function (xhr, status, error) {
+              console.error(xhr.responseText);
+              alert("An error occurred while fetching messages");
+            },
+          });
+        }, 1000);
+      });
+
+      function updatePreview(input) {
+        var fileInput = input;
+        var previewContainer = document.getElementById(
+          "image-preview-container"
+        );
+
+        // Check if an image is selected
+        if (fileInput.files.length > 0) {
+          // Create a new image element
+          var newImage = document.createElement("img");
+          newImage.src = URL.createObjectURL(fileInput.files[0]);
+          newImage.className = "uploaded-image";
+
+          // Replace the existing image with the new one
+          previewContainer.innerHTML = "";
+          previewContainer.appendChild(newImage);
+
+          // Display the container
+          previewContainer.style.display = "block";
+        }
+      }
+      $(document).on("submit", "#post-form", function (e) {
+        e.preventDefault();
+
+        var fileInput = document.getElementById("file-input");
+        var messageInput = document.getElementById("message");
+        var previewContainer = document.getElementById(
+          "image-preview-container"
+        );
+        var imagePreview = document.getElementById("image-preview");
+
+        var formData = new FormData();
+        formData.append("username", $("#username").val());
+        formData.append("room_id", $("#room_id").val());
+        formData.append("message", messageInput.value);
+
+        // Check if an image is selected
+        if (fileInput.files.length > 0) {
+          formData.append("image", fileInput.files[0]);
+        }
+
+        $.ajax({
+          type: "POST",
+          url: "/app1/send",
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            // Handle success
+          },
+          success: function () {
+            // Clear the input field and image preview
+            fileInput.value = "";
+            messageInput.value = "";
+
+            // Clear the image preview container
+            previewContainer.innerHTML = "";
+            previewContainer.style.display = "none";
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+            alert("An error occurred while sending the message");
+          },
+          complete: function () {
+            // Manually clear the input file element
+            $("#file-input").val("");
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
