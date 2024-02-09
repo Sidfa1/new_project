@@ -150,14 +150,17 @@ def activateEmail(request, user, to_email):
 def registerPage(request):
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
+        print(form.is_valid())
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active=False
             user.save()
+            print('hogya')
             message = activateEmail(request, user, form.cleaned_data.get('email'))
             messages.success(request, message)
             return redirect('verify')
         else:
+            print('ni hua')
             for error in list(form.errors.values()):
                 messages.error(request, error)
     else:

@@ -9,7 +9,7 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['username','first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+        fields = ['username','first_name', 'last_name', 'email', 'password1', 'password2']
 
     def save(self, commit=True):
         user = super(UserRegistrationForm, self).save(commit=False)
@@ -33,7 +33,7 @@ class UserLoginForm(AuthenticationForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserModel
-        fields = ['username','first_name', 'last_name', 'username', 'email','profile_picture']
+        fields = ['username','first_name', 'last_name', 'email','profile_picture']
 
 
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
@@ -66,3 +66,4 @@ class UserPasswordConfirmForm(SetPasswordForm):
 
     def __init__(self, *args, **kwargs):
         super(UserPasswordConfirmForm, self).__init__(*args, **kwargs)
+        

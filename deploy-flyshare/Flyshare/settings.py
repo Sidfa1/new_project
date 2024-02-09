@@ -114,20 +114,28 @@ WSGI_APPLICATION = 'Flyshare.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+# "default": {
+#     "ENGINE": "djongo",
+#     'ENFORCE_SCHEMA': False,
+#     "NAME": "flyshare-group6",  # name of your DB which you want to access
+#     "CLIENT": {
+#         'host': 'mongodb+srv://Tharun:Tharun%401316@cluster0.ng51njk.mongodb.net/',  # your db_url if not hosted then localhost
+#         'port': 27017,  # port e.g. 27017
+#         'username': 'Tharun',
+#         'password': 'Tharun@1316',
+#         'authSource': 'admin',  # set your db auth_source if you know
+#         'authMechanism': 'SCRAM-SHA-1'  # set your auth_mechanism if you know
+
+#     }
+# }
+# }
+
 DATABASES = {
 "default": {
     "ENGINE": "djongo",
-    'ENFORCE_SCHEMA': False,
-    "NAME": "flyshare-group6",  # name of your DB which you want to access
-    "CLIENT": {
-        'host': 'mongodb+srv://Tharun:Tharun%401316@cluster0.ng51njk.mongodb.net/',  # your db_url if not hosted then localhost
-        'port': 27017,  # port e.g. 27017
-        'username': 'Tharun',
-        'password': 'Tharun@1316',
-        'authSource': 'admin',  # set your db auth_source if you know
-        'authMechanism': 'SCRAM-SHA-1'  # set your auth_mechanism if you know
-
-    }
+    "NAME": "f",  # name of your DB which you want to access
+  
 }
 }
 # Password validation
@@ -177,13 +185,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'flyshare.services@gmail.com'
+# EMAIL_HOST_PASSWORD = 'qxwbhihygzrjuqva'
+
+
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'flyshare.services@gmail.com'
-EMAIL_HOST_PASSWORD = 'qxwbhihygzrjuqva'
+EMAIL_HOST_USER = 'sampleuser788@gmail.com'
+EMAIL_HOST_PASSWORD = 'vcdl vzmt ulbe hobq'
 
 # AUTHENTICATION_BACKENDS = [
 #     'django.contrib.auth.backends.ModelBackend',
