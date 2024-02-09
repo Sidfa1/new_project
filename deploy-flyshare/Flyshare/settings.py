@@ -135,7 +135,9 @@ DATABASES = {
 "default": {
     "ENGINE": "djongo",
     "NAME": "f",  # name of your DB which you want to access
-  
+    'CLIENT':
+    {'host':'mongodb://admin:admin_password@3.83.235.188:27017/'
+  }
 }
 }
 # Password validation
@@ -169,6 +171,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+   'http://3.83.235.188:8000/',
+
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

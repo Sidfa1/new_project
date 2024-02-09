@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import renderumber
 from rest_framework import generics, status
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -130,7 +130,8 @@ def activateEmail(request, user, to_email):
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
-        "protocol": 'https' if request.is_secure() else 'http'
+        "protocol": 'http'
+        # "protocol": 'https' if request.is_secure() else 'http'
     })
     
     email = EmailMessage(mail_subject, message, to=[to_email])
