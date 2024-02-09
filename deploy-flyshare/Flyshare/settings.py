@@ -174,7 +174,7 @@ USE_TZ = True
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = [
-   'http://3.83.235.188:8000/',
+   'http://3.83.235.188:8000',
 
 ]
 

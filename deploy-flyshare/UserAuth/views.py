@@ -1,4 +1,4 @@
-from django.shortcuts import renderumber
+from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -151,7 +151,7 @@ def activateEmail(request, user, to_email):
 def registerPage(request):
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
-        print(form.is_valid())
+ 
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active=False
